@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11134" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -10,9 +11,12 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application" customClass="NSApplication"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target">
+        <customObject id="-3" userLabel="Application"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Codetext" customModuleProvider="target">
             <connections>
+                <outlet property="button_copy" destination="1Ln-yr-5gA" id="ebj-Mp-t54"/>
+                <outlet property="outlet_output" destination="iIJ-mH-Jgb" id="jgs-nU-dqe"/>
+                <outlet property="outlet_unicode_input" destination="9ZR-Cp-tcc" id="6tQ-qm-XJt"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -677,16 +681,69 @@
                     </menu>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="115" y="-404"/>
         </menu>
-        <window title="Codetext" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
+        <window title="Codetext" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="main" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES" fullScreenDisallowsTiling="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="contentRect" x="335" y="390" width="480" height="106"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1129"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="106"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iIJ-mH-Jgb">
+                        <rect key="frame" x="20" y="20" width="384" height="34"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="1SX-Hu-xoF">
+                            <font key="font" metaFont="system" size="24"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9ZR-Cp-tcc">
+                        <rect key="frame" x="20" y="64" width="440" height="22"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Enter Unicode IDs" drawsBackground="YES" id="bBY-Lj-lto">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="action_input:" target="Voe-Tx-rLC" id="v7m-mR-TQn"/>
+                        </connections>
+                    </textField>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1Ln-yr-5gA">
+                        <rect key="frame" x="403" y="19" width="57" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="57" id="a7A-gV-cWw"/>
+                        </constraints>
+                        <buttonCell key="cell" type="smallSquare" title="Copy" bezelStyle="smallSquare" image="NSAddTemplate" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="37r-qk-cwW">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="action_copy:" target="Voe-Tx-rLC" id="nlL-Tx-dtz"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="iIJ-mH-Jgb" firstAttribute="bottom" secondItem="1Ln-yr-5gA" secondAttribute="bottom" id="0H7-Hv-yjn"/>
+                    <constraint firstAttribute="trailing" secondItem="9ZR-Cp-tcc" secondAttribute="trailing" constant="20" symbolic="YES" id="3Id-mg-0Lt"/>
+                    <constraint firstAttribute="trailing" secondItem="iIJ-mH-Jgb" secondAttribute="trailing" constant="76" id="7H9-MV-3AL"/>
+                    <constraint firstItem="9ZR-Cp-tcc" firstAttribute="leading" secondItem="iIJ-mH-Jgb" secondAttribute="leading" id="8AX-UG-HRC"/>
+                    <constraint firstItem="iIJ-mH-Jgb" firstAttribute="top" secondItem="1Ln-yr-5gA" secondAttribute="top" id="GMX-sP-JwS"/>
+                    <constraint firstItem="9ZR-Cp-tcc" firstAttribute="trailing" secondItem="1Ln-yr-5gA" secondAttribute="trailing" id="bZi-c7-rBm"/>
+                    <constraint firstItem="1Ln-yr-5gA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" symbolic="YES" id="qzL-wd-h74"/>
+                    <constraint firstItem="9ZR-Cp-tcc" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" symbolic="YES" id="t0f-e9-qaf"/>
+                    <constraint firstItem="iIJ-mH-Jgb" firstAttribute="top" secondItem="9ZR-Cp-tcc" secondAttribute="bottom" constant="10" symbolic="YES" id="u6f-uH-Nl7"/>
+                    <constraint firstAttribute="bottom" secondItem="iIJ-mH-Jgb" secondAttribute="bottom" constant="20" symbolic="YES" id="uiJ-wt-1I4"/>
+                    <constraint firstItem="9ZR-Cp-tcc" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" symbolic="YES" id="x6D-bC-xCb"/>
+                </constraints>
             </view>
+            <point key="canvasLocation" x="139" y="-251"/>
         </window>
     </objects>
+    <resources>
+        <image name="NSAddTemplate" width="11" height="11"/>
+    </resources>
 </document>
